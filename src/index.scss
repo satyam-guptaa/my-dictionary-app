@@ -1,0 +1,41 @@
+html {
+	font-size: 16px;
+}
+
+* {
+	box-sizing: border-box;
+	color: #2d2d2d;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+}
+
+button {
+	border: none;
+	background: none;
+	outline: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+button,
+ul {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+}
+
+ol,
+ul {
+	list-style: none;
+}
