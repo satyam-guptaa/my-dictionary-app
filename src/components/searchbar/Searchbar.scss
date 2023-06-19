@@ -1,13 +1,15 @@
 .searchbar {
 	height: 4rem;
+	border: 1px solid transparent;
 	max-width: 100%;
 	background-color: #f4f4f4;
 	border-radius: 16px;
-	margin-top: 20px;
+	margin: 35px 0 45px 0;
 	display: flex;
 	align-items: center;
 	padding: 0 25px;
 	justify-content: space-between;
+	transition: all 0.3s ease-in-out;
 
 	input {
 		border: none;
@@ -17,5 +19,14 @@
 		height: 90%;
 		font-size: 1.4rem;
 		margin-right: 8px;
+
+		&:focus {
+			.searchbar {
+				border: 1px solid #a445ed;
+			}
+		}
 	}
+}
+.active {
+	border: 1px solid #a445ed;
 }
