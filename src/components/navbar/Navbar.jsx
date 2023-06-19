@@ -1,12 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navbar.scss';
+import * as CONSTANT from '../../utilities/appconstant';
 
 export const Navbar = () => {
+	const fontData = [
+		{ name: 'Serif', font: 'Lora' },
+		{ name: 'Sans Serif', font: 'Inter' },
+		{ name: 'Mono', font: 'Inconsolata' },
+	];
 	const [showFontDropdown, setFontDropdown] = useState(false);
+	const [selectedFont, setSelectedFont] = useState();
 
 	const handleDropDown = () => {
 		setFontDropdown(!showFontDropdown);
 	};
+
+	const handleFontChange = ({ font, name }) => {
+		const bodyFont = document.getElementsByTagName('body')[0].style;
+		bodyFont.fontFamily = font;
+		setSelectedFont(name);
+	};
+
+	useEffect(() => {
+		const bodyFont = document.getElementsByTagName('body')[0].style;
+		bodyFont.fontFamily = fontData[0].font;
+		setSelectedFont(fontData[0].name);
+	}, []);
 
 	return (
 		<header>
@@ -18,17 +37,25 @@ export const Navbar = () => {
 							className='font-dropdown-btn'
 							onClick={handleDropDown}
 						>
-							Sans Serif
+							{selectedFont}
 							<img src='/images/icon-arrow-down.svg' alt='' />
-						</button>{' '}
+						</button>
 						<div
 							className={`font-dropdown ${
 								showFontDropdown ? 'show' : ''
 							}`}
 						>
-							<button>Serif</button>
-							<button>Sans Serif</button>
-							<button>Mono</button>
+							{fontData.map((item) => {
+								return (
+									<button
+										key={item.font}
+										onClick={() => handleFontChange(item)}
+										style={{ fontFamily: item.font }}
+									>
+										{item.name}
+									</button>
+								);
+							})}
 						</div>
 					</div>
 					<div className='separator'></div>

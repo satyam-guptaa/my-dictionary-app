@@ -10,8 +10,10 @@
 
 		.dropdown-container {
 			position: relative;
+			height: 25px;
 
 			.font-dropdown-btn {
+				height: 100%;
 				font-weight: 700;
 				font-size: 18px;
 				display: flex;
@@ -21,7 +23,7 @@
 			}
 			.font-dropdown {
 				position: absolute;
-				top: 30px;
+				top: 32px;
 				right: 10px;
 				box-shadow: 0px 0px 10px 0px #e9e9e9;
 				width: 150px;
@@ -36,17 +38,6 @@
 					text-align: left;
 					padding: 8px 10px;
 					font-size: 18px;
-					// font-weight: 700;
-
-					&:first-child {
-						font-family: 'Lora', serif;
-					}
-					&:nth-child(2) {
-						font-family: 'Inter', sans-serif;
-					}
-					&:nth-child(3) {
-						font-family: 'Inconsolata', monospace;
-					}
 				}
 			}
 			.show {
