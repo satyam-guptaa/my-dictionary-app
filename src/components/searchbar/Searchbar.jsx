@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Searchbar.scss';
 import { SEARCH_PLACEHOLDER } from '../../utilities/appconstant';
 
-export const Searchbar = ({ value, onChange }) => {
+export const Searchbar = ({ value, onChange, onClick }) => {
 	const inputRef = useRef(null);
 	const [isFocused, setIsFocused] = useState(false);
 
 	return (
-		<form className={`searchbar ${isFocused ? 'active' : ''}`}>
+		<div className={`searchbar ${isFocused ? 'active' : ''}`}>
 			<input
 				type='text'
 				value={value}
@@ -17,9 +17,9 @@ export const Searchbar = ({ value, onChange }) => {
 				onBlur={() => setIsFocused(false)}
 				placeholder={SEARCH_PLACEHOLDER}
 			/>
-			<button>
+			<button onClick={onClick}>
 				<img src='images/icon-search.svg' alt='' />
 			</button>
-		</form>
+		</div>
 	);
 };
