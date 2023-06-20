@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Navbar.scss';
-import * as CONSTANT from '../../utilities/appconstant';
 
 export const Navbar = () => {
 	const fontData = [
@@ -9,8 +8,10 @@ export const Navbar = () => {
 		{ name: 'Mono', font: 'Inconsolata' },
 	];
 	const [showFontDropdown, setFontDropdown] = useState(false);
-	const [selectedFont, setSelectedFont] = useState();
+	const [selectedFont, setSelectedFont] = useState('Serif');
 	const [darkMode, setDarkMode] = useState(false);
+	const dropdownRef = useRef();
+	const dropdownBtnRef = useRef();
 	const moonSvg = (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -30,9 +31,6 @@ export const Navbar = () => {
 		</svg>
 	);
 
-	const handleDropDown = () => {
-		setFontDropdown(!showFontDropdown);
-	};
 	const handleFontChange = ({ font, name }) => {
 		const bodyStyles = document.getElementsByTagName('body')[0].style;
 		bodyStyles.fontFamily = font;
@@ -56,9 +54,19 @@ export const Navbar = () => {
 	};
 
 	useEffect(() => {
-		const bodyFont = document.getElementsByTagName('body')[0].style;
-		bodyFont.fontFamily = fontData[0].font;
-		setSelectedFont(fontData[0].name);
+		function onClickElsewhere(e) {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(e.target) &&
+				!dropdownBtnRef.current.contains(e.target)
+			) {
+				setFontDropdown(false);
+			}
+		}
+		document.addEventListener('mousedown', onClickElsewhere);
+		return () => {
+			document.removeEventListener('mousedown', onClickElsewhere);
+		};
 	}, []);
 
 	return (
@@ -68,13 +76,15 @@ export const Navbar = () => {
 				<div className='navbar-right-nav'>
 					<div className='dropdown-container'>
 						<button
+							ref={dropdownBtnRef}
 							className='font-dropdown-btn'
-							onClick={handleDropDown}
+							onClick={() => setFontDropdown(!showFontDropdown)}
 						>
 							{selectedFont}
 							<img src='/images/icon-arrow-down.svg' alt='' />
 						</button>
 						<div
+							ref={dropdownRef}
 							className={`font-dropdown ${
 								showFontDropdown ? 'show' : ''
 							} ${darkMode ? 'dark' : ''}`}
