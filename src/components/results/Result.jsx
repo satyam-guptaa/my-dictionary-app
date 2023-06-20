@@ -1,7 +1,12 @@
 import React from 'react';
 import './Result.scss';
 import { Meaning } from './meaningBox/Meaning';
-import { NOUN_TEXT, SOURCE_TEXT, VERB_TEXT } from '../../utilities/appconstant';
+import {
+	ADJECTIVE_TEXT,
+	NOUN_TEXT,
+	SOURCE_TEXT,
+	VERB_TEXT,
+} from '../../utilities/appconstant';
 
 export const Result = ({ result }) => {
 	const phonetic = result.phonetics.filter(
@@ -13,6 +18,9 @@ export const Result = ({ result }) => {
 	)[0];
 	const verbMeanings = result.meanings.filter(
 		(item) => item.partOfSpeech === VERB_TEXT
+	)[0];
+	const adjectiveMeanings = result.meanings.filter(
+		(item) => item.partOfSpeech === ADJECTIVE_TEXT
 	)[0];
 
 	const handlePhoneticPlay = () => {
@@ -58,6 +66,13 @@ export const Result = ({ result }) => {
 					header={verbMeanings.partOfSpeech}
 					definitions={verbMeanings.definitions}
 					synonyms={verbMeanings.synonyms}
+				/>
+			)}
+			{adjectiveMeanings && (
+				<Meaning
+					header={adjectiveMeanings.partOfSpeech}
+					definitions={adjectiveMeanings.definitions}
+					synonyms={adjectiveMeanings.synonyms}
 				/>
 			)}
 			<hr />
