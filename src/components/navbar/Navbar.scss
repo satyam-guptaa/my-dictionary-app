@@ -51,6 +51,15 @@
 			.show {
 				display: flex;
 			}
+			.dark {
+				box-shadow: 0px 0px 10px 0px #a445ed;
+				background-color: #1d1d1d;
+			}
+		}
+		.icon-moon {
+			path {
+				stroke: #a445ed;
+			}
 		}
 		.separator {
 			height: 60%;

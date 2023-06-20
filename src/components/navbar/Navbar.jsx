@@ -10,15 +10,49 @@ export const Navbar = () => {
 	];
 	const [showFontDropdown, setFontDropdown] = useState(false);
 	const [selectedFont, setSelectedFont] = useState();
+	const [darkMode, setDarkMode] = useState(false);
+	const moonSvg = (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='22'
+			height='22'
+			viewBox='0 0 22 22'
+			className={`${darkMode ? 'icon-moon' : ''}`}
+		>
+			<path
+				fill='none'
+				stroke='#838383'
+				stroke-linecap='round'
+				stroke-linejoin='round'
+				stroke-width='1.5'
+				d='M1 10.449a10.544 10.544 0 0 0 19.993 4.686C11.544 15.135 6.858 10.448 6.858 1A10.545 10.545 0 0 0 1 10.449Z'
+			/>
+		</svg>
+	);
 
 	const handleDropDown = () => {
 		setFontDropdown(!showFontDropdown);
 	};
-
 	const handleFontChange = ({ font, name }) => {
-		const bodyFont = document.getElementsByTagName('body')[0].style;
-		bodyFont.fontFamily = font;
+		const bodyStyles = document.getElementsByTagName('body')[0].style;
+		bodyStyles.fontFamily = font;
 		setSelectedFont(name);
+	};
+
+	const handleThemeChange = (e) => {
+		const darkMode = e.target.checked;
+		const bodyStyles = document.getElementsByTagName('body')[0].style;
+		const searchBar = document.getElementsByClassName('searchbar')[0].style;
+		if (darkMode) {
+			bodyStyles.color = '#fff';
+			bodyStyles.backgroundColor = '#050505';
+			searchBar.backgroundColor = '#1d1d1d';
+		} else {
+			bodyStyles.color = '';
+			bodyStyles.backgroundColor = '';
+			searchBar.backgroundColor = '';
+		}
+		setDarkMode(darkMode);
 	};
 
 	useEffect(() => {
@@ -43,7 +77,7 @@ export const Navbar = () => {
 						<div
 							className={`font-dropdown ${
 								showFontDropdown ? 'show' : ''
-							}`}
+							} ${darkMode ? 'dark' : ''}`}
 						>
 							{fontData.map((item) => {
 								return (
@@ -59,12 +93,17 @@ export const Navbar = () => {
 						</div>
 					</div>
 					<div className='separator'></div>
-					<input type='checkbox' name='theme-selector' id='theme' />
+					<input
+						type='checkbox'
+						name='theme-selector'
+						id='theme'
+						onChange={handleThemeChange}
+					/>
 					<label
 						htmlFor='theme'
 						className='navbar-toggle-switch'
 					></label>
-					<img src='/images/icon-moon.svg' alt='' />
+					{moonSvg}
 				</div>
 			</nav>
 		</header>

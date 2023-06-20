@@ -1,6 +1,6 @@
 html {
 	font-size: 16px;
-
+	color: #2d2d2d;
 	@media (width <= 450px) {
 		font-size: 12px;
 	}
@@ -12,7 +12,7 @@ html {
 
 * {
 	box-sizing: border-box;
-	color: #2d2d2d;
+	color: inherit;
 }
 
 body {

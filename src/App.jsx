@@ -23,7 +23,7 @@ function App() {
 			setSearchResult([]);
 			return;
 		}
-		if (searchValue === searchResult[0].word) {
+		if (searchValue === searchResult[0]?.word) {
 			return;
 		}
 		setLoading(true);
