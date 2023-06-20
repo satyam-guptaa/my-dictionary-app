@@ -1,0 +1,74 @@
+.meaning-container {
+	margin-bottom: 40px;
+	.meaning-heading {
+		display: flex;
+		gap: 20px;
+		align-items: center;
+		margin: 40px 0;
+
+		p {
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+		div {
+			flex: 1;
+			border-top: 1px solid #e9e9e9;
+		}
+	}
+	.meaning-section {
+		.meaning-text {
+			line-height: 1.5rem;
+			font-size: 1.25rem;
+			color: #757575;
+		}
+		ul {
+			margin-top: 25px;
+			margin-bottom: 50px;
+			li {
+				margin-bottom: 13px;
+				position: relative;
+				list-style: none;
+				.definition {
+					font-size: 1.25rem;
+				}
+				.example {
+					margin-top: 13px;
+					font-size: 1.125rem;
+					color: #757575;
+				}
+			}
+
+			:before {
+				content: '';
+				width: 5px;
+				height: 5px;
+				position: absolute;
+				border-radius: 50%;
+				top: 9px;
+				left: -1.25rem;
+				background-color: #8f19e8;
+			}
+			:last-child {
+				margin-bottom: 0;
+			}
+		}
+		.synonym-section {
+			display: flex;
+			gap: 22px;
+
+			.synonym-list {
+				display: flex;
+				flex-wrap: wrap;
+				column-gap: 22px;
+				row-gap: 12px;
+
+				span {
+					display: block;
+					font-size: 1.25rem;
+					font-weight: 700;
+					color: #a445ed;
+				}
+			}
+		}
+	}
+}

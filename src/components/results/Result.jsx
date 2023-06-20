@@ -1,9 +1,19 @@
 import React from 'react';
 import './Result.scss';
+import { Meaning } from './meaningBox/Meaning';
+import { SOURCE_TEXT } from '../../utilities/appconstant';
 
 export const Result = ({ result }) => {
+	console.log(result);
 	const phonetic = result.phonetics.filter(
 		(item) => item.audio && item.text
+	)[0];
+
+	const nounMeanings = result.meanings.filter(
+		(item) => item.partOfSpeech === 'noun'
+	)[0];
+	const verbMeanings = result.meanings.filter(
+		(item) => item.partOfSpeech === 'verb'
 	)[0];
 
 	const handlePhoneticPlay = () => {
@@ -31,14 +41,40 @@ export const Result = ({ result }) => {
 			<section className='word-section'>
 				<div className='word-left-section'>
 					<h1>{result.word}</h1>
-					<p>{phonetic.text}</p>
+					{<p>{phonetic?.text}</p>}
 				</div>
-				{phonetic.audio && (
+				{phonetic?.audio && (
 					<div className='word-right-section'>
 						<button onClick={handlePhoneticPlay}>{playIcon}</button>
 					</div>
 				)}
 			</section>
+			{nounMeanings && (
+				<Meaning
+					header={nounMeanings.partOfSpeech}
+					definitions={nounMeanings.definitions}
+					synonyms={nounMeanings.synonyms}
+				/>
+			)}
+			{verbMeanings && (
+				<Meaning
+					header={verbMeanings.partOfSpeech}
+					definitions={verbMeanings.definitions}
+					synonyms={verbMeanings.synonyms}
+				/>
+			)}
+			<hr />
+			{result.sourceUrls && (
+				<section className='source-section'>
+					<p>
+						<span>{SOURCE_TEXT}</span>
+						<a href={result.sourceUrls[0]} target='_blank'>
+							{result.sourceUrls[0]}
+						</a>
+						<img src='/images/icon-new-window.svg' alt='' />
+					</p>
+				</section>
+			)}
 		</article>
 	);
 };

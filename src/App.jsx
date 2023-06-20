@@ -27,12 +27,6 @@ function App() {
 		}
 	};
 
-	// useEffect(() => {
-	// 	if (searchValue.length === 0) {
-	// 		setSearchResult([]);
-	// 	}
-	// }, [searchValue]);
-
 	return (
 		<div className='app'>
 			<Navbar />
@@ -42,7 +36,7 @@ function App() {
 				onClick={handleWordSubmit}
 			/>
 			{loading && <div>Loading...</div>}
-			{searchResult.length > 0 && searchValue.length > 0 && (
+			{searchResult.length > 0 && !loading && (
 				<Result result={searchResult[0]} />
 			)}
 		</div>
