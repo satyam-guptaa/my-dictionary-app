@@ -64,11 +64,13 @@ export const Result = ({ result }) => {
 			{result.sourceUrls && (
 				<section className='source-section'>
 					<p>
-						<span>{SOURCE_TEXT}</span>
-						<a href={result.sourceUrls[0]} target='_blank'>
-							{result.sourceUrls[0]}
-						</a>
-						<img src='/images/icon-new-window.svg' alt='' />
+						<span className='source-title'>{SOURCE_TEXT}</span>
+						<span className='source-footer'>
+							<a href={result.sourceUrls[0]} target='_blank'>
+								{result.sourceUrls[0]}
+							</a>
+							<img src='/images/icon-new-window.svg' alt='' />
+						</span>
 					</p>
 				</section>
 			)}

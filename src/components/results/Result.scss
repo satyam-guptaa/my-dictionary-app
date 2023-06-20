@@ -52,9 +52,8 @@
 		p {
 			font-size: 0.875rem;
 			line-height: 1rem;
-			// text-decoration: underline;
 
-			span {
+			.source-title {
 				color: #757575;
 				border-bottom: 1px solid #757575;
 				margin-right: 1.25rem;
@@ -66,6 +65,12 @@
 			img {
 				margin-left: 9px;
 				vertical-align: bottom;
+			}
+			.source-footer {
+				@media (width <= 450px) {
+					margin-top: 0.625rem;
+					display: block;
+				}
 			}
 		}
 	}
