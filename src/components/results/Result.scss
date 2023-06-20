@@ -4,14 +4,15 @@
 		justify-content: space-between;
 		align-items: center;
 		max-width: 100%;
-		height: 114px;
+		min-height: 7.125rem;
 
 		.word-left-section {
 			height: 100%;
 			h1 {
-				line-height: 80px;
-				font-size: 4rem;
+				line-height: 5rem;
+				font-size: 3.7rem;
 				font-weight: 700;
+				word-break: break-word;
 			}
 			p {
 				color: #a445ed;
@@ -22,6 +23,8 @@
 		}
 		.word-right-section {
 			.play-icon {
+				width: 4.68rem;
+				height: 4.68rem;
 				cursor: pointer;
 				path,
 				circle {

@@ -1,19 +1,18 @@
 import React from 'react';
 import './Result.scss';
 import { Meaning } from './meaningBox/Meaning';
-import { SOURCE_TEXT } from '../../utilities/appconstant';
+import { NOUN_TEXT, SOURCE_TEXT, VERB_TEXT } from '../../utilities/appconstant';
 
 export const Result = ({ result }) => {
-	console.log(result);
 	const phonetic = result.phonetics.filter(
 		(item) => item.audio && item.text
 	)[0];
 
 	const nounMeanings = result.meanings.filter(
-		(item) => item.partOfSpeech === 'noun'
+		(item) => item.partOfSpeech === NOUN_TEXT
 	)[0];
 	const verbMeanings = result.meanings.filter(
-		(item) => item.partOfSpeech === 'verb'
+		(item) => item.partOfSpeech === VERB_TEXT
 	)[0];
 
 	const handlePhoneticPlay = () => {
@@ -24,8 +23,6 @@ export const Result = ({ result }) => {
 	const playIcon = (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			width='75'
-			height='75'
 			viewBox='0 0 75 75'
 			className='play-icon'
 		>
