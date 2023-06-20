@@ -10,6 +10,7 @@ function App() {
 	const [searchValue, setSearchValue] = useState('');
 	const [searchResult, setSearchResult] = useState([]);
 	const [serverError, setServerError] = useState(null);
+	const [inputError, setInputError] = useState(false);
 	const [loading, setLoading] = useState(false);
 
 	const handleChange = (e) => {
@@ -17,11 +18,19 @@ function App() {
 	};
 
 	const handleWordSubmit = async () => {
-		const url = import.meta.env.VITE_DICTIONARY_API + searchValue;
+		if (searchValue.length === 0) {
+			setInputError(true);
+			setSearchResult([]);
+			return;
+		}
+		if (searchValue === searchResult[0].word) {
+			return;
+		}
 		setLoading(true);
 		setSearchResult([]);
 		setServerError(null);
-
+		setInputError(false);
+		const url = import.meta.env.VITE_DICTIONARY_API + searchValue;
 		try {
 			const { data } = await axios.get(url);
 			setSearchResult(data);
@@ -40,8 +49,13 @@ function App() {
 				value={searchValue}
 				onChange={handleChange}
 				onClick={handleWordSubmit}
+				inputError={inputError}
 			/>
-			{loading && <div>Loading...</div>}
+			{loading && (
+				<div style={{ textAlign: 'center' }}>
+					<img src='/images/icon-spinner.svg' alt='' />
+				</div>
+			)}
 			{searchResult.length > 0 && !loading && !serverError && (
 				<Result result={searchResult[0]} />
 			)}

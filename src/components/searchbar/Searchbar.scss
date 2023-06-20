@@ -10,6 +10,7 @@
 	padding: 0 25px;
 	justify-content: space-between;
 	transition: all 0.3s ease-in-out;
+	position: relative;
 
 	input {
 		border: none;
@@ -27,6 +28,17 @@
 		}
 	}
 }
-.active {
+.searchbar-active {
 	border: 1px solid #a445ed;
+}
+.searchbar-error {
+	border: 1px solid #ff5252;
+}
+.input-error-message {
+	position: absolute;
+	bottom: -2rem;
+	left: 0;
+	font-size: 1.25rem;
+	line-height: 1.5rem;
+	color: #ff5252;
 }
